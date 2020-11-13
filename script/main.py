@@ -42,12 +42,12 @@ def get_size(bytes, suffix="B"):
             return f"{bytes:.2f}{unit}{suffix}"
         bytes /= factor
 
-def print_metrics():
-  print("="*40, "System Information", "="*40)
+def save_metrics():
   uname = platform.uname()
   boot_time_timestamp = psutil.boot_time()
   bt = datetime.fromtimestamp(boot_time_timestamp)
 
+  # General Information
   information = {
     "node": uname.node,
     "system": uname.system,
@@ -58,7 +58,7 @@ def print_metrics():
     "boot_time": f"{bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}"
   }
 
-  # CPU 
+  # CPU Information
   cpufreq = psutil.cpu_freq()
   cpu = {
     "physical_cores": psutil.cpu_count(logical=False),
@@ -69,7 +69,7 @@ def print_metrics():
     "percentage": psutil.cpu_percent()
   }
 
-  # RAM
+  # RAM Information
   svmem = psutil.virtual_memory()
   ram = {
     "total": get_size(svmem.total),
@@ -79,52 +79,46 @@ def print_metrics():
   }
 
   # Disk Information
-  print("="*40, "Disk Information", "="*40)
-  print("Partitions and Usage:")
-  # get all disk partitions
-  partitions = psutil.disk_partitions()
-  for partition in partitions:
-      print(f"=== Device: {partition.device} ===")
-      print(f"  Mountpoint: {partition.mountpoint}")
-      print(f"  File system type: {partition.fstype}")
-      try:
-          partition_usage = psutil.disk_usage(partition.mountpoint)
-      except PermissionError:
-          # this can be catched due to the disk that
-          # isn't ready
-          continue
-      print(f"  Total Size: {get_size(partition_usage.total)}")
-      print(f"  Used: {get_size(partition_usage.used)}")
-      print(f"  Free: {get_size(partition_usage.free)}")
-      print(f"  Percentage: {partition_usage.percent}%")
-  # get IO statistics since boot
+  partition = psutil.disk_partitions()[-1]
+  partition_usage = psutil.disk_usage(partition.mountpoint)
   disk_io = psutil.disk_io_counters()
-  print(f"Total read: {get_size(disk_io.read_bytes)}")
-  print(f"Total write: {get_size(disk_io.write_bytes)}")
+  disk = {
+    "total_size": get_size(partition_usage.total),
+    "used": get_size(partition_usage.used),
+    "free": get_size(partition_usage.free),
+    "percentage": partition_usage.percent,
+    "total_read": get_size(disk_io.read_bytes),
+    "total_write": get_size(disk_io.write_bytes)
+  }
 
   # Network information
-  print("="*40, "Network Information", "="*40)
   net_counters = psutil.net_io_counters()
-  print(f"Total Sent: {get_size(net_counters.bytes_sent)}")
-  print(f"Total Received: {get_size(net_counters.bytes_recv)}")
-  print(f"Packets Sent: {net_counters.packets_sent}")
-  print(f"Packets Received: {net_counters.packets_recv}")
-
+  network = {
+    "total_sent": get_size(net_counters.bytes_sent),
+    "total_received": get_size(net_counters.bytes_recv),
+    "packets_sent": net_counters.packets_sent,
+    "packets_received": net_counters.packets_recv,
+  }
 
   db.set({
     "information": information,
     "cpu": cpu,
-    "ram": ram
+    "ram": ram,
+    "disk": disk,
+    "network": network
   })
 
 
 def main():
   print("Enter the duration of the test in minutes:")
-  minutes = int(input())
+  seconds = int(input()) * 60
+  print("Starting...")
 
-  for _ in range(0, minutes * 60):
-    clear()
-    print_metrics()
+  for i in range(0, seconds):
+    print(f"{i}/{seconds}")
+    save_metrics()
     time.sleep(1)
+  
+  print("Finished...")
 
 main()
