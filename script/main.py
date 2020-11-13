@@ -45,51 +45,38 @@ def get_size(bytes, suffix="B"):
 def print_metrics():
   print("="*40, "System Information", "="*40)
   uname = platform.uname()
-  print(f"System: {uname.system}")
-  print(f"Node Name: {uname.node}")
-  print(f"Release: {uname.release}")
-  print(f"Version: {uname.version}")
-  print(f"Machine: {uname.machine}")
-  print(f"Processor: {uname.processor}")
   boot_time_timestamp = psutil.boot_time()
   bt = datetime.fromtimestamp(boot_time_timestamp)
-  print(f"Boot Time: {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
 
-  # let's print CPU information
-  print("="*40, "CPU Info", "="*40)
-  # number of cores
-  print("Physical cores:", psutil.cpu_count(logical=False))
-  print("Total cores:", psutil.cpu_count(logical=True))
-  # CPU frequencies
+  information = {
+    "node": uname.node,
+    "system": uname.system,
+    "version": uname.version,
+    "release": uname.release,
+    "machine": uname.machine,
+    "processor": uname.processor,
+    "boot_time": f"{bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}"
+  }
+
+  # CPU 
   cpufreq = psutil.cpu_freq()
-
-  db.child("data").child("cpu").set({
+  cpu = {
+    "physical_cores": psutil.cpu_count(logical=False),
+    "total_cores": psutil.cpu_count(logical=True),
     "min": cpufreq.min,
     "max": cpufreq.max,
     "current": cpufreq.current,
-    "percentage": psutil.cpu_percent(),
-  })
+    "percentage": psutil.cpu_percent()
+  }
 
-  print(f"Max Frequency: {cpufreq.max:.2f}Mhz")
-  print(f"Min Frequency: {cpufreq.min:.2f}Mhz")
-  print(f"Current Frequency: {cpufreq.current:.2f}Mhz")
-
-  # CPU usage
-  # print("CPU Usage Per Core:")
-  # for i, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
-  #     print(f"Core {i}: {percentage}%")
-  print(f"Total CPU Usage: {psutil.cpu_percent()}%")
-
-
-  # Memory Information
-  print("="*40, "Memory Information", "="*40)
-
-  # get the memory details
+  # RAM
   svmem = psutil.virtual_memory()
-  print(f"Total: {get_size(svmem.total)}")
-  print(f"Available: {get_size(svmem.available)}")
-  print(f"Used: {get_size(svmem.used)}")
-  print(f"Percentage: {svmem.percent}%")
+  ram = {
+    "total": get_size(svmem.total),
+    "available": get_size(svmem.available),
+    "used": get_size(svmem.used),
+    "percentage": svmem.percent
+  }
 
   # Disk Information
   print("="*40, "Disk Information", "="*40)
@@ -122,6 +109,13 @@ def print_metrics():
   print(f"Total Received: {get_size(net_counters.bytes_recv)}")
   print(f"Packets Sent: {net_counters.packets_sent}")
   print(f"Packets Received: {net_counters.packets_recv}")
+
+
+  db.set({
+    "information": information,
+    "cpu": cpu,
+    "ram": ram
+  })
 
 
 def main():
