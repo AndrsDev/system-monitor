@@ -3,14 +3,18 @@
   box-sizing: border-box;
 }
 
-.App {
+.app {
   min-width: 100vw;
   min-height: 100vh;
   background-color: #282c34;
 }
 
-.Content {
+.content {
   max-width: 1080px;
   margin: 0 auto;
   padding: 64px 28px;
+}
+
+.spacing-top {
+  margin-top: 48px;
 }

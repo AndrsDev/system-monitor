@@ -63,7 +63,7 @@ def print_metrics():
   # CPU frequencies
   cpufreq = psutil.cpu_freq()
 
-  db.child("cpu").set({
+  db.child("data").child("cpu").set({
     "min": cpufreq.min,
     "max": cpufreq.max,
     "current": cpufreq.current,
