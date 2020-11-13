@@ -3,7 +3,21 @@ import time
 import subprocess
 import psutil
 import platform
+import pyrebase
 from datetime import datetime
+
+config = {
+ "apiKey": "AIzaSyATj1ov6n6bfJ4QGvv8WrDWeox5aqimH2I",
+  "authDomain": "system-monitor-531ab.firebaseapp.com",
+  "databaseURL": "https://system-monitor-531ab.firebaseio.com",
+  "projectId": "system-monitor-531ab",
+  "storageBucket": "system-monitor-531ab.appspot.com",
+  "messagingSenderId": "154390991734",
+  "appId": "1:154390991734:web:79dc0f4d9d800ed695e057"
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 
 
 def clear():
@@ -48,6 +62,14 @@ def print_metrics():
   print("Total cores:", psutil.cpu_count(logical=True))
   # CPU frequencies
   cpufreq = psutil.cpu_freq()
+
+  db.child("cpu").set({
+    "min": cpufreq.min,
+    "max": cpufreq.max,
+    "current": cpufreq.current,
+    "percentage": psutil.cpu_percent(),
+  })
+
   print(f"Max Frequency: {cpufreq.max:.2f}Mhz")
   print(f"Min Frequency: {cpufreq.min:.2f}Mhz")
   print(f"Current Frequency: {cpufreq.current:.2f}Mhz")

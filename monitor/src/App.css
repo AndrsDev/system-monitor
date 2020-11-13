@@ -1,0 +1,16 @@
+* {
+  color: white;
+  box-sizing: border-box;
+}
+
+.App {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #282c34;
+}
+
+.Content {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 64px 28px;
+}
