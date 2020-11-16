@@ -38,9 +38,7 @@ function App() {
   }
 
   const getScore = () => {
-
     if(cpuUsage.length > 1){
-
       let cpu = cpuUsage[cpuUsage.length - 1][1];
       let ram = ramUsage[ramUsage.length - 1][1];
       let disk = diskUsage[diskUsage.length - 1][1];
