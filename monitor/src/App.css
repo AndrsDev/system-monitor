@@ -22,17 +22,28 @@
 .cards-grid {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  grid-template-columns: 1fr;
   column-gap: 12px;
   row-gap: 12px;
 }
 
 .card {
   background-color:#1e2127;
-  padding: 24px;
+  padding: 36px;
   border-radius: 12px;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 24px;
+  align-items: center;
 }
 
-.card > h2 {
+.card  h2 {
   margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.chart-container {
+  width: auto;
+  height: 300px;
 }
