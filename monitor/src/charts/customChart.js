@@ -1,13 +1,13 @@
 import React from "react";
 import { Chart } from "react-charts";
 
-function CustomChart({plots}) {
+function CustomChart({plots, label}) {
 
 
   const data = React.useMemo(
     () => [
       {
-        label: "CPU %",
+        label: "Percentage",
         data: plots
       }
     ],
@@ -24,7 +24,7 @@ function CustomChart({plots}) {
 
   return (
     <div className="chart-container">
-      <Chart data={data} axes={axes} dark tooltip />
+      <Chart data={data} axes={axes} dark />
     </div>
   )
 

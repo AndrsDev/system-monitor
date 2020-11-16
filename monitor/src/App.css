@@ -47,3 +47,24 @@
   width: auto;
   height: 300px;
 }
+
+.score {
+  margin: 64px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3a3a69;
+}
+
+.big-text {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.small-text {
+  margin: 0
+}

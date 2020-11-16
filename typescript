@@ -132,4 +132,164 @@ Starting...
 58/60
 59/60
 Finished...
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro script % [K[?2004hccd ..[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hggit status[?2004l
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   monitor/package-lock.json[m
+	[31mmodified:   monitor/package.json[m
+	[31mmodified:   monitor/src/App.css[m
+	[31mmodified:   monitor/src/App.js[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mmonitor/src/charts/[m
+	[31mtypescript[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hggit add .[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hggit commit m-   -m ""f"i"n"i"s"h"e"d" "r"e"a"l"t"i"m"e" "f"o"r" "c"p"u"[1C[?2004l
+[develop d0464f7] finished realtime for cpu
+ 6 files changed, 427 insertions(+), 82 deletions(-)
+ rewrite monitor/src/App.js (76%)
+ create mode 100644 monitor/src/charts/customChart.js
+ create mode 100644 typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hccd script [?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro script % [K[?2004hppython3 mani  in.py[?2004l
+Enter the duration of the test in minutes:
+1
+Starting...
+0/60
+1/60
+2/60
+3/60
+4/60
+5/60
+6/60
+7/60
+8/60
+9/60
+10/60
+11/60
+12/60
+13/60
+14/60
+15/60
+16/60
+17/60
+18/60
+19/60
+20/60
+21/60
+22/60
+23/60
+24/60
+25/60
+26/60
+27/60
+28/60
+29/60
+30/60
+31/60
+32/60
+33/60
+34/60
+35/60
+36/60
+37/60
+38/60
+39/60
+40/60
+41/60
+42/60
+43/60
+44/60
+45/60
+46/60
+47/60
+48/60
+49/60
+50/60
+51/60
+52/60
+53/60
+54/60
+55/60
+56/60
+57/60
+58/60
+59/60
+Finished...
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro script % [K[?2004hccd ..[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hcclear[?2004l
+[H[2J[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro system-monitor % [K[?2004hccd script[?2004l
+[1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro script % [K[?2004hcd script[9Dclear    cd ..python3 main.py[15Dcd script      [10Dpython3 main.py[?2004l
+Enter the duration of the test in minutes:
+1
+Starting...
+0/60
+1/60
+2/60
+3/60
+4/60
+5/60
+6/60
+7/60
+8/60
+9/60
+10/60
+11/60
+12/60
+13/60
+14/60
+15/60
+16/60
+17/60
+18/60
+19/60
+20/60
+21/60
+22/60
+23/60
+24/60
+25/60
+26/60
+27/60
+28/60
+29/60
+30/60
+31/60
+32/60
+33/60
+34/60
+35/60
+36/60
+37/60
+38/60
+39/60
+40/60
+41/60
+42/60
+43/60
+44/60
+45/60
+46/60
+47/60
+48/60
+49/60
+50/60
+51/60
+52/60
+53/60
+54/60
+55/60
+56/60
+57/60
+58/60
+59/60
+Finished...
 [1m[7m%[27m[1m[0m                                                                                                                                                             [0m[27m[24m[Jandrs@Andress-MacBook-Pro script % [K[?2004h
