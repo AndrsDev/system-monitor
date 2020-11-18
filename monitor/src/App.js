@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "./firebase";
-import "./app.css";
+import "./App.css";
 import CustomChart from "./charts/customChart";
 
 const db = firebase.database();
